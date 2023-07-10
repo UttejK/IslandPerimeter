@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>hello</h1>
+  </body>
+</html>
+<script>
+  function isOutOfBounds(i, j, grid) {
+    return i < 0 || j < 0 || i >= grid.length || j >= grid[i].length;
+  }
+
+  function countPerimeter(grid) {
+    let p = 0;
+
+    for (let i = 0; i < grid.length; i++) {
+      for (let j = 0; j < grid[i].length; j++) {
+        if (grid[i][j] === 1) {
+          if (isOutOfBounds(i + 1, j, grid) || grid[i + 1][j] === 0) {
+            p += 1;
+          }
+          if (isOutOfBounds(i - 1, j, grid) || grid[i - 1][j] === 0) {
+            p += 1;
+          }
+          if (isOutOfBounds(i, j + 1, grid) || grid[i][j + 1] === 0) {
+            p += 1;
+          }
+          if (isOutOfBounds(i, j - 1, grid) || grid[i][j - 1] === 0) {
+            p += 1;
+          }
+          // console.log(p);
+        }
+      }
+    }
+
+    return p;
+  }
+
+  const grid = [
+    [0, 1, 0, 0],
+    [1, 1, 1, 0],
+    [0, 1, 0, 0],
+    [1, 1, 0, 0],
+  ];
+  // console.log(grid);
+  const perimeter = countPerimeter(grid);
+  console.log("Perimeter:", perimeter);
+</script>
